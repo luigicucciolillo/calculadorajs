@@ -10,12 +10,12 @@ Este es un ejercicio para crear una calculadora
 
 ## Esquema de la pantalla
 
-| PAN | TA  | LLA | \_  |
-| --- | --- | --- | --- |
-| 7   | 8   | 9   | /   |
-| 4   | 5   | 6   | \*  |
-| 1   | 2   | 3   | -   |
-| C   | 0   | =   | +   |
+| <td colspan=4>PANTALLA |
+| ---------------------- | --- | --- | --- |
+| 7                      | 8   | 9   | /   |
+| 4                      | 5   | 6   | \*  |
+| 1                      | 2   | 3   | -   |
+| C                      | 0   | =   | +   |
 
 ## Funciones
 
