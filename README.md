@@ -49,4 +49,5 @@ Esta función limpia la pantalla
 -   Si la calculadora no sigue el esquema propuesto o no hace las operaciones indicadas, recibirás una nota del 0 al 5
 -   Si la calculadora sigue el esquema propuesto y hace las operaciones indicadas, recibirás una nota del 5 al 7
 -   Si has descubierto alternativas a eval(), tendrás un punto más
--   Si además has trabajado los CSS para que tenga un aspecto impresionte, tendrás dos puntos más.
+-   Si además has trabajado los CSS para que tenga un aspecto impresionante, tendrás un punto más.
+-   Si encima has añadido funcionalidades extra a la calculadora, tendrás un punto más.
