@@ -41,7 +41,7 @@ Esta función limpia la pantalla
 
 ## A tener en cuenta
 
-1. El diseño puede ser tan sencillo como hacer un grid con los botones, como tan complejo como trabajar el CSS para que se parezca a una calculadora Braun ET66
+1. El diseño puede ser tan sencillo como hacer un grid con los botones y un input para la pantalla, como tan complejo como trabajar el CSS para que se parezca a una calculadora Braun ET66
 2. En JS existe una función [eval()](https://www.w3schools.com/jsref/jsref_eval.asp) que permite convertir un string en una operación y realizar el cálculo pero cuidado, se trata de una función peligrosa y que no se recomienda su uso, incluso ha sido deprecada. Deberás buscar alternativas a eval (chatGPT y stack overflow son tus copilotos)
 
 ## Evaluación
