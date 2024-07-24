@@ -1,3 +1,28 @@
+// FIREWORKS **********************************************
+function activateFirework(fireworkId, left = '50%', top = '50%', scale = 1, color = '#f5cf52') {
+    const firework = document.getElementById(fireworkId);
+    if (firework) {
+        // Set CSS custom properties for position, scale, and color
+        firework.style.setProperty('--left', left);
+        firework.style.setProperty('--top', top);
+        firework.style.setProperty('--scale', scale);
+        firework.style.setProperty('--color', color);
+
+        // Activate the firework
+        firework.classList.add('active');
+
+        // Optional: Remove fireworks after animation completes
+        setTimeout(() => {
+            firework.classList.remove('active');
+        }, 2000); // Adjust to match animation duration
+    }
+}
+function fireworkRUN()
+{
+    activateFirework('firework1', '10%', '20%', 2, '#f5cf52');
+    activateFirework('firework2', '30%', '40%', 1.5, '#ff5733');
+    activateFirework('firework3', '70%', '60%', 1, '#33c3ff');
+}
 // SLIDING RESULT *******************************************//
 const resultDiv = document.getElementById('result');
 const resultValueSpan = document.getElementById('resultValue');
@@ -40,66 +65,73 @@ document.addEventListener('DOMContentLoaded', function() {
 switch (value) {
   case 'C':
         screenValue = '';
-        activateMatrixEffectParam(50,'red')  
+        activateMatrixEffectParam(50,'red','C')  
     break;
   case '=':
         try { 
-            activateMatrixEffectParam(500,'red')    
+            fireworkRUN()
             screenValue = eval(screenValue);
             showResult(screenValue);
+            activateMatrixEffectParam(5000,'red',screenValue.toString())  
+            fireworkRUN()
+  
         } 
         catch {screenValue = 'Error';  }
     break;
   case 'cos':
         screenValue = Math.cos(screenValue * (Math.PI / 180));
-        activateMatrixEffectParam(500,'red')    
+        activateMatrixEffectParam(500,'red',screenValue.toString())    
         showResult(screenValue);
 
     break;
   case 'sin':
         screenValue = Math.sin(screenValue * (Math.PI / 180));
-        activateMatrixEffectParam(500,'red')    
+        activateMatrixEffectParam(500,'red',screenValue.toString())    
         showResult(screenValue);
     break;
   case 'tan':
         screenValue = Math.tan(screenValue * (Math.PI / 180));
-        activateMatrixEffectParam(500,'red')    
+        activateMatrixEffectParam(500,'red',screenValue.toString())    
         showResult(screenValue);
     break;
   case 'log':
         screenValue = Math.log10(screenValue);
-        activateMatrixEffectParam(500,'red')    
+        activateMatrixEffectParam(500,'red',screenValue.toString())    
         showResult(screenValue);
   break;
   default:
     if (value === '=' || value === '+' || value === '-' || value === '*' || value === '/') {
-        activateMatrixEffectParam(100,'green');
-    } else {activateMatrixEffectParam(100,'blu');}
+        activateMatrixEffectParam(1000,'green',value);
+    } else {activateMatrixEffectParam(1000,'blu',screenValue.toString()+value);}
 
     screenValue += value;
 }
+fireworkRUN()
+
             screen.value = screenValue;
         });
     });
 });
 
+fireworkRUN()
+
 // MATRIX EFFECT ****************************************** 
-function activateMatrixEffectParam(numbers,color) {
+function activateMatrixEffectParam(numbers,color,intext) {
     const matrixEffect = document.getElementById('matrixEffect');
     matrixEffect.classList.add('active');
-    generateMatrixEffectParam(numbers,color)
+    generateMatrixEffectParam(numbers,color,intext)
 }
 function deactivateMatrixEffect() {
     const matrixEffect = document.getElementById('matrixEffect');
     matrixEffect.classList.remove('active');
 }
-function generateMatrixEffectParam(numbers,color) {
+function generateMatrixEffectParam(numbers,color,intext) {
     const matrixEffect = document.getElementById('matrixEffect');
     matrixEffect.innerHTML = ''; // Clear existing content
     matrixEffect.dataset.color = color;
     for (let i = 0; i < numbers; i++) {
         const span = document.createElement('span');
-        span.innerText = Math.random().toString(36).substr(2, 1);
+        span.innerText = intext//Math.random().toString(36).substr(2, 1);
         span.style.left = Math.random() * 100 + 'vw';
         span.style.animationDuration = Math.random() * 2 + 3 + 's';
         span.style.animationDelay = Math.random() * 1 + 's';
