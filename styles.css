@@ -11,20 +11,10 @@ body {
 }
 
 .calculator {
-    /* background: #131111;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);*/
-   
     position: relative;
-    /*border: 1px solid #ccc;*/
     border-radius: 8px;
-   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
     width: 300px;
-   /* height: 400px;*/
-    /*margin: 20px; **/
     z-index: 10;
-    /*background: #fff; */
 }
 
 .calculator-screen {
@@ -45,16 +35,18 @@ body {
 }
 
 .btn {
-    height: 40px;
-    background: #e0e0e0;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.btn:hover {
-    background: #d0d0d0;
+position: relative;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+background-color: #040505;
+color: white;
+font-size: 16px;
+cursor: pointer;
+overflow: hidden;
+transition: transform 0.2s ease;
+/* Ensure this is applied for animation */
+will-change: transform;
 }
 
 .btn:active {
@@ -62,7 +54,7 @@ body {
     transform: translateY(4px); /*button down when clicked*/
 }
 
-/* Matrix Effect Styles */
+/* Matrix Effect Styles *******************************************/
 .matrix-effect {
     position: fixed;
     top: 0;
@@ -109,6 +101,12 @@ body {
     color: #f00; /* Red color for falling text when active */
 }
 
+.matrix-effect[data-color='blu'] span {
+    color: rgb(15, 58, 177); /* Red color for falling text when active */
+}
+.matrix-effect[data-color='green'] span {
+    color: rgb(19, 236, 66); /* Red color for falling text when active */
+}
 @keyframes fall {
     from {
         top: -100%;
@@ -122,4 +120,76 @@ body {
     0% { opacity: 1; }
     50% { opacity: 0.5; }
     100% { opacity: 1; }
+}
+
+/* Explosion effect styling **************************************************/
+.btn:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+/* Explosion effect colors based on data-color attribute */
+.btn[data-color="blue"]:after {
+    background: radial-gradient(circle, rgba(0, 0, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.btn[data-color="green"]:after {
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.btn[data-color="red"]:after {
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* Animation for the explosion */
+.btn.explode:after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+/* Button hover effect */
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* Full-page result container styling **************************************/
+.result {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    color: rgb(248, 17, 17);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%); /* Start off-screen */
+    transition: transform 0.5s ease; /* Slide-in transition */
+    z-index: 1000;
+}
+
+.result.show {
+    transform: translateX(0); /* Slide in */
+}
+
+/* Result content styling */
+.result-content {
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    border-radius: 10px;
 }
